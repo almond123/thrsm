@@ -1,0 +1,882 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>주요 성과 정리</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    :root {
+      --primary: #1a3a5c;
+      --accent: #2e7dd6;
+      --accent-light: #e8f2fc;
+      --text: #1e2d3d;
+      --text-muted: #5a6a7a;
+      --border: #d0dce9;
+      --bg: #f4f7fb;
+      --white: #ffffff;
+      --green: #1a6e4a;
+      --green-light: #e6f4ed;
+      --tag-bg: #e8f2fc;
+      --tag-color: #1a4f8a;
+    }
+    
+    body {
+      font-family: 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+    
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 20px 80px;
+    }
+    
+    /* Header */
+    .header {
+      background: linear-gradient(135deg, var(--primary) 0%, #2a5298 100%);
+      color: white;
+      padding: 40px 50px;
+      border-radius: 16px;
+      margin-bottom: 36px;
+      position: relative;
+      overflow: hidden;
+    }
+    .header::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 200px; height: 200px;
+      background: rgba(255,255,255,0.07);
+      border-radius: 50%;
+    }
+    .header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      letter-spacing: -0.5px;
+    }
+    .header .subtitle {
+      font-size: 1rem;
+      opacity: 0.8;
+    }
+    .header .companies {
+      display: flex;
+      gap: 12px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+    .company-badge {
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: white;
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 0.875rem;
+      font-weight: 500;
+    }
+    
+    /* TOC */
+    .toc {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 24px 28px;
+      margin-bottom: 36px;
+      border: 1px solid var(--border);
+    }
+    .toc h2 { font-size: 0.875rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px; }
+    .toc ul { list-style: none; }
+    .toc li { margin-bottom: 6px; }
+    .toc a { color: var(--accent); text-decoration: none; font-size: 0.95rem; }
+    .toc a:hover { text-decoration: underline; }
+    
+    /* Company Section */
+    .company-section {
+      margin-bottom: 48px;
+    }
+    .company-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 2px solid var(--accent);
+    }
+    .company-icon {
+      width: 52px; height: 52px;
+      background: var(--accent);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.2rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .company-name { font-size: 1.5rem; font-weight: 700; color: var(--primary); }
+    .company-period { font-size: 0.875rem; color: var(--text-muted); margin-top: 4px; }
+    
+    /* Achievement Card */
+    .achievement-card {
+      background: var(--white);
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      margin-bottom: 20px;
+      overflow: hidden;
+      transition: box-shadow 0.2s;
+    }
+    .achievement-card:hover {
+      box-shadow: 0 6px 24px rgba(46,125,214,0.12);
+    }
+    .card-header {
+      padding: 20px 24px 16px;
+      background: var(--accent-light);
+      border-bottom: 1px solid var(--border);
+    }
+    .card-number {
+      font-size: 0.75rem;
+      color: var(--accent);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+    }
+    .card-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--primary);
+      line-height: 1.4;
+    }
+    .card-body { padding: 20px 24px; }
+    
+    /* Grid for sections */
+    .card-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 16px;
+    }
+    @media (max-width: 640px) {
+      .card-grid { grid-template-columns: 1fr; }
+    }
+    
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .section-label::before {
+      content: '';
+      display: inline-block;
+      width: 4px; height: 14px;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+    
+    .detail-box {
+      background: var(--bg);
+      border-radius: 10px;
+      padding: 14px 18px;
+    }
+    .detail-box ul {
+      list-style: none;
+      padding: 0;
+    }
+    .detail-box ul li {
+      padding: 5px 0;
+      padding-left: 18px;
+      position: relative;
+      font-size: 0.9rem;
+      color: var(--text);
+      line-height: 1.6;
+    }
+    .detail-box ul li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 0.75rem;
+      top: 7px;
+    }
+    
+    .result-box {
+      background: var(--green-light);
+      border-left: 3px solid var(--green);
+      border-radius: 0 10px 10px 0;
+      padding: 14px 18px;
+    }
+    .result-box ul {
+      list-style: none;
+      padding: 0;
+    }
+    .result-box ul li {
+      padding: 4px 0;
+      padding-left: 18px;
+      position: relative;
+      font-size: 0.9rem;
+      color: #1a3a2a;
+      line-height: 1.6;
+    }
+    .result-box ul li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--green);
+      font-size: 0.8rem;
+      top: 5px;
+      font-weight: 700;
+    }
+    
+    .challenge-box {
+      background: #fef9ec;
+      border-left: 3px solid #e6a817;
+      border-radius: 0 10px 10px 0;
+      padding: 14px 18px;
+      font-size: 0.9rem;
+      color: #5a4010;
+      line-height: 1.7;
+    }
+    
+    /* Project Section */
+    .project-section {
+      background: var(--white);
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+    .project-header {
+      background: linear-gradient(135deg, #1a3a5c 0%, #2a5298 100%);
+      color: white;
+      padding: 24px 30px;
+    }
+    .project-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.2);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: white;
+      padding: 3px 12px;
+      border-radius: 12px;
+      font-size: 0.8rem;
+      margin-bottom: 10px;
+    }
+    .project-header h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .project-header .project-subtitle {
+      font-size: 0.875rem;
+      opacity: 0.8;
+    }
+    .project-body { padding: 24px 30px; }
+    
+    .problem-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    @media (max-width: 640px) {
+      .problem-grid { grid-template-columns: 1fr; }
+    }
+    
+    .problem-item {
+      background: #fff3f3;
+      border: 1px solid #fcc;
+      border-radius: 10px;
+      padding: 14px 16px;
+    }
+    .problem-item h5 {
+      font-size: 0.8rem;
+      color: #c0392b;
+      font-weight: 600;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      letter-spacing: 0.5px;
+    }
+    .problem-item p { font-size: 0.875rem; color: #4a2020; line-height: 1.6; }
+    
+    .solution-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    @media (max-width: 640px) {
+      .solution-grid { grid-template-columns: 1fr; }
+    }
+    
+    .solution-item {
+      background: var(--accent-light);
+      border: 1px solid #c4ddf7;
+      border-radius: 10px;
+      padding: 14px 16px;
+    }
+    .solution-item h5 {
+      font-size: 0.8rem;
+      color: var(--accent);
+      font-weight: 600;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      letter-spacing: 0.5px;
+    }
+    .solution-item p { font-size: 0.875rem; color: #1a2e4a; line-height: 1.6; }
+    
+    .metrics-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin: 20px 0;
+    }
+    @media (max-width: 640px) {
+      .metrics-row { grid-template-columns: 1fr; }
+    }
+    
+    .metric-card {
+      background: var(--primary);
+      color: white;
+      border-radius: 12px;
+      padding: 16px;
+      text-align: center;
+    }
+    .metric-value {
+      font-size: 1.5rem;
+      font-weight: 700;
+      display: block;
+      margin-bottom: 4px;
+    }
+    .metric-label {
+      font-size: 0.8rem;
+      opacity: 0.8;
+      line-height: 1.4;
+    }
+    
+    /* Footer */
+    .footer {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      margin-top: 60px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+    }
+    
+    /* Edit Guide */
+    .edit-guide {
+      background: #fff9e6;
+      border: 1px dashed #f0c030;
+      border-radius: 10px;
+      padding: 14px 18px;
+      margin-bottom: 36px;
+      font-size: 0.85rem;
+      color: #6b4f10;
+    }
+    .edit-guide strong { color: #8b6000; }
+    
+    .tag {
+      display: inline-block;
+      background: var(--tag-bg);
+      color: var(--tag-color);
+      padding: 2px 10px;
+      border-radius: 10px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      margin: 2px 3px 2px 0;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Edit Guide -->
+  <div class="edit-guide">
+    📝 <strong>수정 방법:</strong> 이 HTML 파일을 텍스트 에디터(VS Code 등)로 열어 원하는 내용을 직접 수정하세요. 저장 후 브라우저로 열면 즉시 반영됩니다.
+  </div>
+
+  <!-- Header -->
+  <div class="header">
+    <h1>주요 성과 정리</h1>
+    <p class="subtitle">보안 소프트웨어 개발 · Windows 시스템 프로그래밍 · 자동화 시스템 구축</p>
+    <div class="companies">
+      <span class="company-badge">🏢 안랩 (AhnLab)</span>
+      <span class="company-badge">🏢 LIG아큐버 (전 이노와이어리스)</span>
+    </div>
+  </div>
+
+  <!-- TOC -->
+  <div class="toc">
+    <h2>목차</h2>
+    <ul>
+      <li><a href="#ahnlab">🛡️ 안랩 — 주요 성과 (5건)</a></li>
+      <li style="padding-left: 20px;"><a href="#ach1">1. 자사 프로세스 검사 예외 기능 개발</a></li>
+      <li style="padding-left: 20px;"><a href="#ach2">2. V3 검사 수행 시간 제한 및 이어서 검사 기능 개발</a></li>
+      <li style="padding-left: 20px;"><a href="#ach3">3. CPU 점유율 제어 고도화</a></li>
+      <li style="padding-left: 20px;"><a href="#ach4">4. 프로세스 검사 시간 단축</a></li>
+      <li style="padding-left: 20px;"><a href="#ach5">5. V3 모니터링 모드 기능 개발</a></li>
+      <li style="padding-left: 20px;"><a href="#ach6">6. V3와 EPP 연동 인터페이스 개발</a></li>
+      <li style="padding-left: 20px;"><a href="#ach7">7. V3 및 시스템 리소스 모니터링을 통한 검사 동작 제어</a></li>
+      <li style="padding-left: 20px;"><a href="#ach8">8. 스크립트 검사 캐싱(Cache) 기능 추가</a></li>
+      <li style="padding-left: 20px;"><a href="#project">🚀 장기 프로젝트: V3 커스텀 마스터 제작 자동화 시스템</a></li>
+      <li><a href="#ligaqua">📡 LIG아큐버 — 주요 성과</a></li>
+    </ul>
+  </div>
+
+  <!-- ===== 안랩 Section ===== -->
+  <div class="company-section" id="ahnlab">
+    <div class="company-header">
+      <div class="company-icon">A</div>
+      <div>
+        <div class="company-name">안랩 (AhnLab)</div>
+        <div class="company-period">V3 보안 소프트웨어 개발팀</div>
+      </div>
+    </div>
+
+    <!-- Achievement 1 -->
+    <div class="achievement-card" id="ach1">
+      <div class="card-header">
+        <div class="card-number">Achievement 01</div>
+        <div class="card-title">자사 프로세스 검사 예외 기능 개발</div>
+      </div>
+      <div class="card-body">
+        <div class="card-grid">
+          <div>
+            <div class="section-label">세부 내용</div>
+            <div class="detail-box">
+              <ul>
+                <li>자사 제품 동작에 의해 V3 리소스 점유율이 높아지지 않도록 실시간 감시 예외 기능 개발</li>
+                <li>레지스트리 수정 시 발생하는 OS 콜백 API를 활용해 등록된 서비스 조회, 프로세스 인증서 검증 등을 통해 인가되지 않은 프로세스가 검사 예외되지 않도록 보안 아키텍처 설계 및 구현</li>
+                <li>각 제품의 부하 경로에 대한 정보를 구조체로 관리할 수 있도록 설계 (향후 확장성 고려)</li>
+              </ul>
+            </div>
+          </div>
+          <div>
+            <div class="section-label">성과</div>
+            <div class="result-box">
+              <ul>
+                <li>고객사에 여러 자사 제품과 V3 동시 설치 시 발생했던 시스템 리소스 과점유 이슈 해소</li>
+                <li>기능 추가 이후 관련 고객사 클레임 <strong>0건</strong></li>
+              </ul>
+            </div>
+            <div style="margin-top: 12px;">
+              <div class="section-label">어려웠던 점</div>
+              <div class="challenge-box">평소 접점이 없던 유관 부서와의 소통이 쉽지 않았지만, 먼저 적극적이고 겸손한 자세로 나서서 협업을 이끌어냄. 각 제품의 부하 경로가 각기 다른 부분을 취합·정리하는 작업이 핵심 과제였음.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Achievement 2 -->
+    <div class="achievement-card" id="ach2">
+      <div class="card-header">
+        <div class="card-number">Achievement 02</div>
+        <div class="card-title">V3 검사 수행 시간 제한 및 이어서 검사 기능 개발</div>
+      </div>
+      <div class="card-body">
+        <div class="card-grid">
+          <div>
+            <div class="section-label">세부 내용</div>
+            <div class="detail-box">
+              <ul>
+                <li>NTFS 파일 시스템에서 사전순으로 시스템을 순회하는 메커니즘을 아이디어로 착안</li>
+                <li>시스템 검사 중단 지점부터 이어서 검사할 수 있는 기능 개발</li>
+                <li>검사 중단 지점부터 이어서 검사하기 위해 필요한 정보를 INI 포맷으로 기록 후 비동기 스레드 동기화 지점을 찾아 해결</li>
+              </ul>
+            </div>
+          </div>
+          <div>
+            <div class="section-label">성과</div>
+            <div class="result-box">
+              <ul>
+                <li>대용량 환경에서 시스템 부하로 인해 검사가 중단되던 고질적 문제 해결</li>
+                <li>업무 외 시간이나 저부하 시간대를 활용해 수 일에 걸친 전수 검사 완료 및 보안 취약성 제거</li>
+                <li>타사 백신 대비 차별화된 기능 구현으로 제품 경쟁력 강화에 기여</li>
+              </ul>
+            </div>
+            <div style="margin-top: 12px;">
+              <div class="section-label">어려웠던 점</div>
+              <div class="challenge-box">복잡한 시스템 검사 구조와 비동기 파일시스템 검사 로직에서 정확한 검사 중단 위치를 찾아내기 위한 과정이 특히 어려운 미션이었음. NTFS 메커니즘과 비동기 스레드 동기화 지점 발견을 통해 해결.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Achievement 3 -->
+    <div class="achievement-card" id="ach3">
+      <div class="card-header">
+        <div class="card-number">Achievement 03</div>
+        <div class="card-title">CPU 점유율 제어 고도화</div>
+      </div>
+      <div class="card-body">
+        <div class="card-grid">
+          <div>
+            <div class="section-label">세부 내용</div>
+            <div class="detail-box">
+              <ul>
+                <li>Threshold 값을 동적으로 변경하는 신규 알고리즘을 개발하여 CPU 점유율 제어의 정확성 향상</li>
+                <li>오차 범위: 개선 전 <strong>±10% 이상</strong> → 개선 후 <strong>±3%</strong></li>
+                <li>Performance Analyzer를 활용하여 개선 전/후에 대한 결과를 명확히 제시</li>
+              </ul>
+            </div>
+          </div>
+          <div>
+            <div class="section-label">성과</div>
+            <div class="result-box">
+              <ul>
+                <li>CPU 사용량을 낮게 설정하더라도 일부 고객사 환경에서 CPU 점유율이 높게 유지되는 경우가 종종 발생했으나, 기능 추가 이후 관련 고객사 클레임 <strong>0건</strong></li>
+              </ul>
+            </div>
+            <div style="margin-top: 12px;">
+              <div class="section-label">어려웠던 점</div>
+              <div class="challenge-box">기존 상용 제품 전반에 도입된 기능이었기 때문에 개선에 대한 부담과 투입 리소스 대비 성과가 불분명해 섣불리 개발하기 어려웠음. 고심 끝에 제품 품질 향상을 위해 결심하고 데이터로 판단의 타당성을 증명.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Achievement 4 -->
+    <div class="achievement-card" id="ach4">
+      <div class="card-header">
+        <div class="card-number">Achievement 04</div>
+        <div class="card-title">프로세스 검사 시간 단축</div>
+      </div>
+      <div class="card-body">
+        <div class="card-grid">
+          <div>
+            <div class="section-label">세부 내용</div>
+            <div class="detail-box">
+              <ul>
+                <li>실행 중인 프로세스를 검사하는 알고리즘 변경 및 자료구조 도입</li>
+                <li>A 테스트 기준 프로세스 검사 시간 <strong>2.5배 이상 단축</strong></li>
+                <li>개선 전/후 차트 비교 및 UI를 통한 명확한 속도 차이 확인</li>
+              </ul>
+            </div>
+          </div>
+          <div>
+            <div class="section-label">성과</div>
+            <div class="result-box">
+              <ul>
+                <li>다른 기능 개발 중 프로세스 검사에 지나치게 오랜 시간이 걸리는 것을 발견하여 자체적으로 문제를 파악하고 개선</li>
+                <li>비효율적 로직 전면 검토 후 최소 <strong>2.5배 이상</strong> 프로세스 검사 속도 향상</li>
+              </ul>
+            </div>
+            <div style="margin-top: 12px;">
+              <div class="section-label">어려웠던 점</div>
+              <div class="challenge-box">고객사/기획 요구사항이 아닌 스스로 발견한 이슈로, 개선 필요성을 구성원들에게 설득하는 과정이 어려웠음. 차트와 UI 비교를 통해 명확한 근거를 제시하여 설득.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Achievement 5 -->
+    <div class="achievement-card" id="ach5">
+      <div class="card-header">
+        <div class="card-number">Achievement 05</div>
+        <div class="card-title">V3 모니터링 모드 기능 개발</div>
+      </div>
+      <div class="card-body">
+        <div class="card-grid">
+          <div>
+            <div class="section-label">세부 내용</div>
+            <div class="detail-box">
+              <ul>
+                <li>백신 도입 시 고객사의 가장 큰 고민인 오동작 방지를 위해 탐지는 하되 차단하지 않는 모니터링 모드 개발</li>
+                <li>V3의 7가지 진단 기능 전체에 모니터링 모드 도입</li>
+                <li>구체적인 테스트 케이스 수립을 통해 수정 결과의 안정성 보강</li>
+              </ul>
+            </div>
+          </div>
+          <div>
+            <div class="section-label">성과</div>
+            <div class="result-box">
+              <ul>
+                <li>백신을 새로 도입하거나 교체하는 고객사에서 모니터링 모드 활성화를 통해 현재 동작 중인 시스템의 안정성 최대한 확보</li>
+                <li>고객사 시스템에 구동 중인 모듈의 오진 여부 확인 가능</li>
+              </ul>
+            </div>
+            <div style="margin-top: 12px;">
+              <div class="section-label">어려웠던 점</div>
+              <div class="challenge-box">V3의 7가지 진단 기능 전체에 대해 분석해야 해서 코드가 방대하고 테스트 커버리지가 넓었음. 각 기능을 분리하여 정확한 로직을 파악하는 방식으로 접근.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Achievement 6 -->
+    <div class="achievement-card" id="ach6">
+      <div class="card-header">
+        <div class="card-number">Achievement 06</div>
+        <div class="card-title">V3와 EPP(보안 관리 플랫폼) 연동 인터페이스 개발</div>
+      </div>
+      <div class="card-body">
+        <div class="card-grid">
+          <div>
+            <div class="section-label">세부 내용</div>
+            <div class="detail-box">
+              <ul>
+                <li>PIPE 통신과 REST API를 활용하여 차세대 보안 관리 플랫폼과 V3의 새로운 연동 인터페이스 설계 및 개발</li>
+                <li>기존 단순화된 DLL 연동 인터페이스를 대체</li>
+              </ul>
+            </div>
+          </div>
+          <div>
+            <div class="section-label">성과</div>
+            <div class="result-box">
+              <ul>
+                <li>기존 방식에서는 백신 구동 상태 확인을 위해 클라이언트 PC를 직접 확인해야 했으나, 관리 플랫폼에서 각 클라이언트의 V3 구동 상태를 명확하게 파악 가능</li>
+                <li>유관 부서와의 소통 수월성 증대</li>
+              </ul>
+            </div>
+            <div style="margin-top: 12px;">
+              <div class="section-label">어려웠던 점</div>
+              <div class="challenge-box">타 부서에서 작성한 스펙 문서를 이해하는 과정에서 용어 및 도메인 지식 차이로 어려움이 있었음. 반복 학습과 유관 부서 담당자에게 적극적으로 질문하며 해결.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Achievement 7 -->
+    <div class="achievement-card" id="ach7">
+      <div class="card-header">
+        <div class="card-number">Achievement 07</div>
+        <div class="card-title">V3 및 시스템 리소스 모니터링을 통한 검사 동작 제어</div>
+      </div>
+      <div class="card-body">
+        <div class="card-grid">
+          <div>
+            <div class="section-label">세부 내용</div>
+            <div class="detail-box">
+              <ul>
+                <li>V3의 CPU 점유율 및 시스템 CPU/메모리 사용량을 모니터링하여 임계치에 따라 검사 기능을 제어 (리소스 제어 기능)</li>
+                <li>임계 조건에 따라 주요 기능을 중지/재개시키는 동작 구현</li>
+                <li>정밀한 테스트 시나리오를 만들어 반복 테스트로 안정성 확보</li>
+              </ul>
+            </div>
+          </div>
+          <div>
+            <div class="section-label">성과</div>
+            <div class="result-box">
+              <ul>
+                <li>리소스 제어 기능 도입 전 V3로 인한 리소스 과점유 이슈가 빈번했으나, 도입 후 서버 환경에서 안정적 백신 운용 가능</li>
+                <li>리소스 점유 관련 이슈 인입 <strong>획기적으로 감소</strong></li>
+                <li>현재까지 결함 없이 동작 중</li>
+              </ul>
+            </div>
+            <div style="margin-top: 12px;">
+              <div class="section-label">어려웠던 점</div>
+              <div class="challenge-box">시스템 전체와 V3 프로세스 각각의 CPU, 메모리 사용량을 동시에 모니터링해야 하기 때문에 멀티스레드 기반의 리소스 계산 및 임계 조건 측정이 복잡했음. 보안 문제로도 이어질 수 있는 기능이라 특히 주의가 필요했음.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Achievement 8 -->
+    <div class="achievement-card" id="ach8">
+      <div class="card-header">
+        <div class="card-number">Achievement 08</div>
+        <div class="card-title">스크립트 검사 캐싱(Cache) 기능 추가</div>
+      </div>
+      <div class="card-body">
+        <div class="card-grid">
+          <div>
+            <div class="section-label">세부 내용</div>
+            <div class="detail-box">
+              <ul>
+                <li>불특정 프로세스에 의해 대량의 스크립트 실행 발생 시 LRU 캐시 알고리즘 도입을 통해 V3의 스크립트 검사 부하 최적화</li>
+                <li>메리츠증권 HTS 프로그램 환경에서 실사용 테스트 수행 (테스트 환경 직접 구성, 계좌 개설 포함)</li>
+                <li>사용성 저하에 대한 테스트 케이스 작성 및 수치화</li>
+              </ul>
+            </div>
+          </div>
+          <div>
+            <div class="section-label">성과</div>
+            <div class="result-box">
+              <ul>
+                <li>스크립트 검사 캐싱 기능 도입으로 스크립트 검사 기능을 OFF했을 때와 동일한 수준으로 부하 최적화</li>
+                <li>QA 테스트 리포트 기준 File I/O 발생량 <strong>66.29% 감소</strong></li>
+                <li>수 년간 반복되던 스크립트 검사 부하 이슈를 근본적으로 해결</li>
+              </ul>
+            </div>
+            <div style="margin-top: 12px;">
+              <div class="section-label">어려웠던 점</div>
+              <div class="challenge-box">메리츠증권 HTS 프로그램 사용 시 주식 시장이 가장 활성화된 특정 시간에만 이슈가 발생하여 원인 파악이 어려웠음. 테스트 환경을 직접 구성하고 실사용 테스트를 수 일에 걸쳐 진행하여 해결.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Long Project -->
+    <div id="project" style="margin-top: 36px;">
+      <h2 style="font-size: 1.2rem; color: var(--primary); margin-bottom: 16px; display: flex; align-items: center; gap: 10px;">
+        <span style="background: var(--primary); color: white; padding: 4px 14px; border-radius: 8px; font-size: 0.8rem;">장기 프로젝트</span>
+        V3 커스텀 마스터 제작 자동화 시스템
+      </h2>
+
+      <div class="project-section">
+        <div class="project-header">
+          <div class="project-badge">🚀 개인 주도 프로젝트</div>
+          <h3>V3 커스텀 마스터 제작 자동화 시스템</h3>
+          <p class="project-subtitle">고객사 환경에 적합하게 설정된 V3 설치파일(커스텀 마스터) 제작 과정의 Full 자동화</p>
+        </div>
+        <div class="project-body">
+          
+          <!-- Overview Metrics -->
+          <div class="metrics-row">
+            <div class="metric-card">
+              <span class="metric-value">1명</span>
+              <span class="metric-label">업무 투입 인원<br>(自 기획·개발·배포)</span>
+            </div>
+            <div class="metric-card">
+              <span class="metric-value">10분 이내</span>
+              <span class="metric-label">일 평균 투입 시간<br>(자동화 후)</span>
+            </div>
+            <div class="metric-card">
+              <span class="metric-value">6개월</span>
+              <span class="metric-label">개발 기간<br>(Python3, 사내 인프라)</span>
+            </div>
+          </div>
+
+          <!-- Before -->
+          <h4 style="font-size: 1rem; font-weight: 700; color: var(--primary); margin: 24px 0 12px; border-bottom: 1px solid var(--border); padding-bottom: 8px;">⚠️ 도입 전 (Before) — 문제 상황</h4>
+          <div class="problem-grid">
+            <div class="problem-item">
+              <h5>업무 부하</h5>
+              <p>일 평균 10건 이상 이슈 생성, 제작 시간 최소 30분 ~ 최대 1시간 이상 소요. 5년 이상 단순 툴 개선 수준에 그침.</p>
+            </div>
+            <div class="problem-item">
+              <h5>인력 의존성</h5>
+              <p>6개월 단위로 채용되는 학생 인턴이 담당하여 인력 변동에 따른 업무 연속성이 결여됨. 교육·멘토링·업무 인수인계에 개발자 역량 투입 발생.</p>
+            </div>
+            <div class="problem-item">
+              <h5>일관성 부재</h5>
+              <p>기술지원 담당자마다 일관되지 않은 요청 양식으로 요청 내용을 이해하고 해석하는 데 어려움이 따름.</p>
+            </div>
+            <div class="problem-item">
+              <h5>수동 테스트</h5>
+              <p>V3를 직접 설치하고 수동 테스트하는 과정에서 최소 10분 ~ 최대 30분 이상 소요. 기능 추가/버그 수정 시 1시간 이상 개발 및 테스트 시간 필요.</p>
+            </div>
+          </div>
+
+          <!-- After -->
+          <h4 style="font-size: 1rem; font-weight: 700; color: var(--green); margin: 24px 0 12px; border-bottom: 1px solid var(--border); padding-bottom: 8px;">✅ 도입 후 (After) — 성과</h4>
+          <div class="solution-grid">
+            <div class="solution-item">
+              <h5>Full 자동화</h5>
+              <p>요청 내용 해석 → 제작 → 배포까지 Full 자동화. 이슈 생성과 동시에 자동 제작 시작, 커스텀 마스터가 제작되기까지 약 5분 소요.</p>
+            </div>
+            <div class="solution-item">
+              <h5>자동화 테스트</h5>
+              <p>가상화 환경에서 Robot Framework를 이용한 테스트 자동화. 빠른 제작 및 긴급 요청에 원활히 대응. 테스트 소요 시간 5~10분.</p>
+            </div>
+            <div class="solution-item">
+              <h5>요청 양식 표준화</h5>
+              <p>Rule 기반의 정형화된 템플릿을 통해 요청 양식이 일관화됨. 오류 시 어느 부분이 잘못되었는지 파싱 결과로 전달 (컴파일 오류 출력 방식과 유사).</p>
+            </div>
+            <div class="solution-item">
+              <h5>유지보수성</h5>
+              <p>V3 설정에 대한 메타데이터를 구조화된 JSON으로 구현. 짧은 시간 안에 새로운 설정 추가 가능 (기능 추가 시 작업 시간 몇 분 이내).</p>
+            </div>
+          </div>
+
+          <!-- Key Achievement -->
+          <div style="background: linear-gradient(135deg, #1a3a5c, #2a5298); color: white; border-radius: 12px; padding: 20px 24px; margin-top: 20px;">
+            <div style="font-size: 0.8rem; opacity: 0.8; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;">핵심 성과</div>
+            <div style="font-size: 1.05rem; font-weight: 600; line-height: 1.7;">
+              사람이 직접 제작하던 이전 방식과 비교했을 때 <strong>극단적 효율화</strong>를 이룸.<br>
+              Python3 기반 사내 인프라를 활용하여 개발 기간 6개월, 1인 개발 완수.
+            </div>
+          </div>
+
+          <!-- Tech Stack -->
+          <div style="margin-top: 20px;">
+            <div class="section-label">기술 스택</div>
+            <div style="margin-top: 8px;">
+              <span class="tag">Python 3</span>
+              <span class="tag">Robot Framework</span>
+              <span class="tag">JIRA Webhook</span>
+              <span class="tag">REST API</span>
+              <span class="tag">JSON</span>
+              <span class="tag">VMware vSphere</span>
+              <span class="tag">Windows</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== LIG아큐버 Section ===== -->
+  <div class="company-section" id="ligaqua">
+    <div class="company-header">
+      <div class="company-icon" style="background: #2e7d32;">L</div>
+      <div>
+        <div class="company-name">LIG아큐버 <span style="font-size: 1rem; color: var(--text-muted); font-weight: 400;">(구 이노와이어리스)</span></div>
+        <div class="company-period">무선망 로그 분석 솔루션 개발팀</div>
+      </div>
+    </div>
+
+    <div class="achievement-card">
+      <div class="card-header">
+        <div class="card-number">Achievement</div>
+        <div class="card-title">무선망 로그 분석 솔루션 XCAP (OPTis Analyzer) 개발</div>
+      </div>
+      <div class="card-body">
+        <div class="section-label">세부 내용</div>
+        <div class="detail-box" style="margin-bottom: 16px;">
+          <ul>
+            <li>다양한 칩셋 제조사 (Snapdragon, Exynos, Hellio 등) RF 스펙에 따라 무선망 데이터를 파싱하는 작업 진행</li>
+            <li>Unix/Windows 크로스플랫폼 환경에서 libpcap 라이브러리를 활용한 TCP/IP, UDP 패킷 파싱 엔진 개발. Putty를 통한 원격 터미널 접속 환경에서 작업</li>
+            <li>파싱 데이터에 대한 후처리(Post-process) 작업: 차트, 그래프, 테이블 등 가시화 작업</li>
+            <li>자사 솔루션 XCAP 기반 삼성전자 특화 로그 분석 솔루션 개발 (SI 주도)</li>
+          </ul>
+        </div>
+        <div class="section-label">성과</div>
+        <div class="result-box">
+          <ul>
+            <li>기지국과 휴대 단말 사이의 무선 신호를 데이터화한 로그를 기반으로 무선망 통신 품질을 측정하고, 음영지역에 대한 개선 등에 활용할 수 있는 XCAP 솔루션을 개발</li>
+            <li>통신 벤더(SKT, KT, LG U+) 및 칩셋 제조사들(삼성, 퀄컴 등)의 기지국(스몰셀)과 단말 사이의 무선 통신 품질을 측정하고 개선점을 찾기 위해 활용</li>
+          </ul>
+        </div>
+        <div style="margin-top: 16px;">
+          <div class="section-label">기술 스택</div>
+          <div style="margin-top: 8px;">
+            <span class="tag">C/C++</span>
+            <span class="tag">libpcap</span>
+            <span class="tag">TCP/IP</span>
+            <span class="tag">UDP</span>
+            <span class="tag">Unix/Linux</span>
+            <span class="tag">Windows</span>
+            <span class="tag">Cross-platform</span>
+            <span class="tag">RF 통신 분석</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>이 문서는 HTML 포맷으로 관리됩니다 · 마지막 업데이트: 2026.08.30</p>
+  </div>
+
+</div>
+</body>
+</html>
