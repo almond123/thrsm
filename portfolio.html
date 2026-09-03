@@ -395,7 +395,47 @@
       font-weight: 500;
       margin: 2px 3px 2px 0;
     }
-  </style>
+  
+    .metrics-row.cols-4 {
+      grid-template-columns: repeat(4, 1fr);
+    }
+    @media (max-width: 768px) {
+      .metrics-row.cols-4 { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 480px) {
+      .metrics-row.cols-4 { grid-template-columns: 1fr; }
+    }
+    .tooling-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 14px;
+    }
+    @media (max-width: 640px) {
+      .tooling-grid { grid-template-columns: 1fr; }
+    }
+    .tooling-item {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-left: 3px solid #2e7dd6;
+      border-radius: 8px;
+      padding: 14px 16px;
+    }
+    .tooling-item h5 {
+      font-size: 0.85rem;
+      color: var(--primary);
+      font-weight: 700;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .tooling-item p {
+      font-size: 0.85rem;
+      color: var(--text);
+      line-height: 1.6;
+    }
+</style>
 </head>
 <body>
 <div class="container">
@@ -419,7 +459,8 @@
   <div class="toc">
     <h2>목차</h2>
     <ul>
-      <li><a href="#ahnlab">🛡️ 안랩 — 주요 성과 (5건)</a></li>
+      <li><a href="#ahnlab">🛡️ 안랩 — 주요 성과 및 프로젝트</a></li>
+      <li style="padding-left: 20px;"><a href="#proj-policy">🚀 <strong>[핵심 프로젝트]</strong> V3 차세대 SaaS 연동 JSON 정책 체계 전환 & 자동화 파이프라인 구축</a></li>
       <li style="padding-left: 20px;"><a href="#ach1">1. 자사 프로세스 검사 예외 기능 개발</a></li>
       <li style="padding-left: 20px;"><a href="#ach2">2. V3 검사 수행 시간 제한 및 이어서 검사 기능 개발</a></li>
       <li style="padding-left: 20px;"><a href="#ach3">3. CPU 점유율 제어 고도화</a></li>
@@ -440,6 +481,148 @@
       <div>
         <div class="company-name">안랩 (AhnLab)</div>
         <div class="company-period">V3 보안 소프트웨어 개발팀</div>
+      </div>
+    </div>
+
+    <!-- Major Project: JSON Policy Pipeline -->
+    <div id="proj-policy" style="margin-bottom: 36px;">
+      <h2 style="font-size: 1.25rem; color: var(--primary); margin-bottom: 16px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+        <span style="background: linear-gradient(135deg, #1a3a5c 0%, #2e7dd6 100%); color: white; padding: 4px 14px; border-radius: 8px; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.5px;">최신 핵심 프로젝트</span>
+        2026.03 ~ 2026.09 (V3 하반기 정기 패치)
+      </h2>
+
+      <div class="project-section">
+        <div class="project-header" style="background: linear-gradient(135deg, #162b44 0%, #204975 100%);">
+          <div class="project-badge" style="background: rgba(46, 125, 214, 0.35); border-color: rgba(255, 255, 255, 0.4);">🚀 개인 주도 핵심 과제 · 아키텍처 혁신</div>
+          <h3 style="font-size: 1.35rem; line-height: 1.4; margin-top: 4px;">V3 차세대 SaaS 연동을 위한 JSON 정책 체계 전환, 크로스플랫폼 정책 통합, 자동화 파이프라인 구축</h3>
+          <p class="project-subtitle" style="margin-top: 8px; font-size: 0.92rem; line-height: 1.6; opacity: 0.9;">
+            사내 SaaS 관리 솔루션(Onemanagement) 연동을 위한 XML→JSON 정책 포맷 전환 및 단일 원천(JSON Schema) 기반 CI/CD 자동화, x-mapping 무코드 설정 매핑, AI 기반 1,300개 정책 전수 검증 및 Windows/Linux 정책 체계 일원화
+          </p>
+        </div>
+        
+        <div class="project-body">
+          <!-- Overview Metrics -->
+          <div class="metrics-row cols-4">
+            <div class="metric-card">
+              <span class="metric-value">100여 개 정리</span>
+              <span class="metric-label">미사용 레거시 정책 정제<br>(~600개 → 약 500개 슬림화)</span>
+            </div>
+            <div class="metric-card">
+              <span class="metric-value">반나절 → 1시간</span>
+              <span class="metric-label">정책 추가/수정 소요 시간<br>(스키마 수정만으로 대폭 단축)</span>
+            </div>
+            <div class="metric-card">
+              <span class="metric-value">1,300개 검증</span>
+              <span class="metric-label">수동 불가 규모의 전수 테스트<br>야간 배치 자동화로 완수</span>
+            </div>
+            <div class="metric-card">
+              <span class="metric-value">Cross-Platform</span>
+              <span class="metric-label">Windows & Linux V3 정책을<br>공통 JSON 체계로 일원화</span>
+            </div>
+          </div>
+
+          <!-- Project Background Callout -->
+          <div style="background: #f1f6fc; border-left: 4px solid var(--accent); padding: 14px 18px; border-radius: 0 10px 10px 0; margin-bottom: 24px; font-size: 0.92rem; color: #1e3a5a; line-height: 1.65;">
+            <strong>📌 추진 배경:</strong> 사내 SaaS 환경을 겨냥한 차세대 관리 제품(<strong>Onemanagement</strong>) 출범에 따라, V3가 기존 레거시 XML 대신 표준 JSON 정책을 수용해야 하는 요구사항이 발생했습니다. 이에 단순 1:1 포맷 포팅에 머무르지 않고, 수년간 누적된 XML 정책의 레거시 부채를 과감히 정리하고, 개발자 경험(DX)과 정책 배포 생산성을 극대화하기 위해 <strong>스키마 기반 자동화 및 무코드 설정 매핑 아키텍처</strong>로 전면 재설계를 주도했습니다.
+          </div>
+
+          <!-- Before vs After -->
+          <h4 style="font-size: 1rem; font-weight: 700; color: var(--primary); margin: 24px 0 12px; border-bottom: 1px solid var(--border); padding-bottom: 8px;">⚠️ 도입 전 (Before) — 기존 XML 정책 체계의 한계</h4>
+          <div class="problem-grid">
+            <div class="problem-item">
+              <h5>파편화된 다단계 수정 프로세스</h5>
+              <p>정책 수정/추가 시 관리제품팀 저장소(Bitbucket Repo)의 다수 XML 파일(요소·속성 기입)과 XML 스키마 문서를 각각 수동 수정하고 PR을 생성해야 하는 번거로운 수작업 발생</p>
+            </div>
+            <div class="problem-item">
+              <h5>C++ 파싱 코드 수작업 & 동기화 부담</h5>
+              <p>정책이 추가될 때마다 V3 소스코드에 C++ 파싱 로직을 직접 추가해야 했으며, 관리제품 레포의 XML 정책과 V3 내부 파싱 코드 간 지속적인 스펙 동기화 관리 부담 존재</p>
+            </div>
+            <div class="problem-item">
+              <h5>레거시 정책 누적 및 분류 모호성</h5>
+              <p>약 600여 개의 방대한 정책 중 미사용 레거시 정책들이 방치되어 불필요한 용량 차지, 정책 증가에 따라 카테고리 구분이 명확하지 않아 정책 성질 파악 곤란</p>
+            </div>
+            <div class="problem-item">
+              <h5>플랫폼별 정책 체계 파편화</h5>
+              <p>Windows V3와 Linux V3가 각각 분리된 정책 체계를 운영하여 플랫폼 간 중복 개발 리소스가 투입되고 팀 간 소통 비용이 과다하게 발생</p>
+            </div>
+          </div>
+
+          <h4 style="font-size: 1rem; font-weight: 700; color: var(--green); margin: 24px 0 12px; border-bottom: 1px solid var(--border); padding-bottom: 8px;">✅ 도입 후 (After) — 개선 성과 및 아키텍처 혁신</h4>
+          <div class="solution-grid">
+            <div class="solution-item">
+              <h5>Single Source of Truth & CI/CD 자동화</h5>
+              <p><strong>JSON Schema 파일 하나만 수정</strong>하면 Bamboo CI/CD 파이프라인을 통해 JSON 정책 파일이 자동 생성되고, 관리제품팀 Bitbucket Repo에 자동 Commit/Push 및 PR까지 생성 (관리제품 레포 수동 작업 100% 제거)</p>
+            </div>
+            <div class="solution-item">
+              <h5>x-mapping 무코드(No-Code) 설정 자동 매핑</h5>
+              <p>JSON Schema 내 비정규 속성(<code>x-mapping</code>)을 도입하여, 별도 C++ 파싱 코드 작성 없이 JSON 정책 데이터를 V3 엔진 내부 설정으로 곧바로 1:1 자동 매핑함으로써 개발 공수 획기적 단축</p>
+            </div>
+            <div class="solution-item">
+              <h5>레거시 100여 개 정리 & 다각적 카테고리화</h5>
+              <p>미사용 레거시 정책 약 100개를 발굴·제거하여 슬림화하고, 정책의 성질과 보안 도메인에 맞춘 다각적 카테고리 분류 체계를 도입하여 정책 명확성 및 관리 편의성 극대화</p>
+            </div>
+            <div class="solution-item">
+              <h5>Windows & Linux 크로스플랫폼 통합</h5>
+              <p>Windows V3와 Linux V3가 공통 JSON 정책 체계를 공유하도록 일원화하여, 플랫폼 간 정책 파편화를 해소하고 개발 리소스 절감 및 제품 간 소통 활성화</p>
+            </div>
+          </div>
+
+          <!-- AI Tooling & Testing Strategy -->
+          <h4 style="font-size: 1rem; font-weight: 700; color: var(--accent); margin: 28px 0 12px; border-bottom: 1px solid var(--border); padding-bottom: 8px;">🤖 AI(Copilot, Claude Code) 활용 및 철저한 품질 검증 체계</h4>
+          <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 14px;">
+            새로운 JSON 정책 적용 시 기존 XML 정책과 동일하게 V3 엔진에 100% 무결점으로 반영되어야 하므로, AI 코딩 도구를 적극 활용하여 검증 도구군과 파이프라인을 자체 구축했습니다.
+          </p>
+          <div class="tooling-grid">
+            <div class="tooling-item">
+              <h5>🔄 1. XML ↔ JSON 1:1 정책 변환 툴 개발 (Python)</h5>
+              <p>기존 XML 정책과 신규 JSON 정책 간 스키마 구조를 1:1로 정확하게 상호 변환하고 매핑 관계를 검증하는 변환 엔진 개발</p>
+            </div>
+            <div class="tooling-item">
+              <h5>📸 2. C++ 정책 스냅샷 & 정밀 Diff 비교 도구 개발 (C++)</h5>
+              <p>정책 적용 후 V3 내부 설정 상태를 완벽 캡처하는 스냅샷 도구 및 두 스냅샷 간 설정을 필드 단위로 정밀 비교하는 고성능 Diff 도구 자체 개발</p>
+            </div>
+            <div class="tooling-item">
+              <h5>🌐 3. 실운영 XML 정책 수집 크롤러 개발 (Selenium)</h5>
+              <p>테스트 신뢰성을 높이기 위해 실제 운영 환경에서 실사용 중인 다양한 XML 정책들을 관리 콘솔에서 자동으로 일괄 다운로드하는 웹 크롤러 구축</p>
+            </div>
+            <div class="tooling-item">
+              <h5>⚡ 4. PowerShell 기반 E2E 테스트 자동화 파이프라인</h5>
+              <p><code>V3 초기화 → XML 적용 → 스냅샷 캡처 → V3 재초기화 → JSON 적용 → 스냅샷 캡처 → Diff 비교</code> 전 과정을 일괄 수행하는 스크립트 구축. 수작업이 불가능한 대규모 테스트를 야간 배치로 무인 자동화</p>
+            </div>
+            <div class="tooling-item" style="grid-column: span 2;">
+              <h5>🛡️ 5. 구조화된 Allowance(허용 목록) 차이 분석 및 무결성 확보</h5>
+              <p>서로 다른 약 1,300개 정책을 실행·비교하는 과정에서 발생한 수많은 Diff를 심층 분석하여 분류: <strong>1) JSON 정책 결함, 2) 기존 레거시 XML 파서의 버그, 3) 미사용 정책으로 인한 무해한 차이점</strong>. 이 중 무시 가능한 항목을 구조화된 <code>Allowance</code> 규칙으로 체계적 분리·관리하여 실제 결함에 집중함으로써 완벽한 설정 무결성 입증</p>
+            </div>
+          </div>
+
+          <!-- Key Achievement Banner -->
+          <div style="background: linear-gradient(135deg, #1a3a5c, #2a5298); color: white; border-radius: 12px; padding: 20px 24px; margin-top: 24px;">
+            <div style="font-size: 0.8rem; opacity: 0.85; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;">핵심 성과 & 비즈니스 임팩트</div>
+            <div style="font-size: 1.05rem; font-weight: 600; line-height: 1.7;">
+              • 사내 신규 SaaS 관리 솔루션(<strong>Onemanagement</strong>)과의 안정적 연동 및 성공적 런칭 적극 지원<br>
+              • Windows V3와 Linux V3의 <strong>공통 정책 체계 수립</strong>으로 플랫폼 간 정책 파편화 해소 및 정책 관련 개발 리소스 획기적 절감<br>
+              • <strong>JSON Schema 단일 원천화 및 x-mapping 무코드 매핑</strong>으로 정책 추가 작업 소요 시간을 <strong>반나절 이상에서 1시간 이내</strong>로 70% 이상 단축<br>
+              • AI 기반 도구 및 테스트 자동화로 <strong>1,300개 정책의 완벽한 기능적 동등성(Parity) 무결점 검증</strong>
+            </div>
+          </div>
+
+          <!-- Tech Stack -->
+          <div style="margin-top: 22px;">
+            <div class="section-label">기술 스택</div>
+            <div style="margin-top: 8px;">
+              <span class="tag">C++</span>
+              <span class="tag">Python</span>
+              <span class="tag">PowerShell</span>
+              <span class="tag">Selenium</span>
+              <span class="tag">JSON Schema (x-mapping)</span>
+              <span class="tag">Bitbucket</span>
+              <span class="tag">Bamboo (CI/CD)</span>
+              <span class="tag">Claude Code</span>
+              <span class="tag">GitHub Copilot</span>
+              <span class="tag">Cross-Platform (Windows/Linux)</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
