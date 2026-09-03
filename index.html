@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
   <title>주요 성과 정리</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -435,9 +436,110 @@
       color: var(--text);
       line-height: 1.6;
     }
+
+    /* Password Gate Modal */
+    #auth-overlay {
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      background: rgba(26, 58, 92, 0.88);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 999999;
+      padding: 20px;
+    }
+    .auth-card {
+      background: var(--white);
+      border-radius: 18px;
+      padding: 38px 32px;
+      max-width: 400px;
+      width: 100%;
+      box-shadow: 0 24px 48px rgba(0, 0, 0, 0.3);
+      text-align: center;
+      transition: transform 0.2s ease;
+      animation: modalFadeIn 0.3s ease-out;
+    }
+    @keyframes modalFadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .auth-icon {
+      font-size: 2.8rem;
+      margin-bottom: 12px;
+    }
+    .auth-card h2 {
+      font-size: 1.3rem;
+      color: var(--primary);
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+    .auth-card p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-bottom: 22px;
+      line-height: 1.55;
+    }
+    .auth-input-group {
+      margin-bottom: 14px;
+    }
+    .auth-input {
+      width: 100%;
+      padding: 13px 16px;
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .auth-input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(46, 125, 214, 0.2);
+    }
+    .auth-btn {
+      width: 100%;
+      padding: 13px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.1s;
+    }
+    .auth-btn:hover { opacity: 0.94; }
+    .auth-btn:active { transform: scale(0.98); }
+    .auth-error {
+      color: #e74c3c;
+      font-size: 0.85rem;
+      margin-top: 12px;
+      min-height: 20px;
+      font-weight: 500;
+    }
+    /* Hide container when not authenticated */
+    body:not(.authenticated) .container {
+      display: none !important;
+    }
 </style>
 </head>
 <body>
+  <!-- ======================================================= -->
+  <!-- 🔒 비밀번호 확인 모달                                   -->
+  <!-- ======================================================= -->
+  <div id="auth-overlay">
+    <div class="auth-card">
+      <div class="auth-icon">🔒</div>
+      <h2>이력서 보호 중</h2>
+      <p>비공개 이력서입니다.<br>열람을 위해 비밀번호를 입력해 주세요.</p>
+      <div class="auth-input-group">
+        <input type="password" id="auth-password" class="auth-input" placeholder="비밀번호 입력" autofocus />
+      </div>
+      <button id="auth-submit" class="auth-btn">확인</button>
+      <div id="auth-error" class="auth-error"></div>
+    </div>
+  </div>
+
 <div class="container">
 
   <!-- Edit Guide -->
@@ -480,7 +582,7 @@
       <div class="company-icon">A</div>
       <div>
         <div class="company-name">안랩 (AhnLab)</div>
-        <div class="company-period">V3 보안 소프트웨어 개발팀</div>
+        <div class="company-period">V3개발팀</div>
       </div>
     </div>
 
@@ -1013,7 +1115,7 @@
       <div class="company-icon" style="background: #2e7d32;">L</div>
       <div>
         <div class="company-name">LIG아큐버 <span style="font-size: 1rem; color: var(--text-muted); font-weight: 400;">(구 이노와이어리스)</span></div>
-        <div class="company-period">무선망 로그 분석 솔루션 개발팀</div>
+        <div class="company-period">OPTis S/W개발팀</div>
       </div>
     </div>
 
@@ -1060,6 +1162,66 @@
     <p>이 문서는 HTML 포맷으로 관리됩니다 · 마지막 업데이트: 2026.08.30</p>
   </div>
 
-</div>
+  <p style="margin-top: 8px;"><a href="javascript:void(0)" onclick="sessionStorage.removeItem('resume_access_granted'); location.reload();" style="color: var(--text-muted); font-size: 0.8rem; text-decoration: underline;">🔒 페이지 다시 잠그기</a></p>
+  </div>
+
+  <!-- ======================================================= -->
+  <!-- 🔑 비밀번호 설정 및 인증 스크립트                        -->
+  <!-- 💡 비밀번호 변경: 아래 RESUME_PASSWORD 값을 수정하세요   -->
+  <!-- ======================================================= -->
+  <script>
+    // 👇👇👇 [비밀번호 변경 영역] 아래 "1234" 부분을 원하는 비밀번호로 변경하세요! 👇👇👇
+    const RESUME_PASSWORD = "1234";
+
+    // 세션 키 (브라우저를 닫기 전까지 인증 상태 유지)
+    const AUTH_SESSION_KEY = "resume_access_granted";
+
+    function unlockResume() {
+      document.body.classList.add('authenticated');
+      const overlay = document.getElementById('auth-overlay');
+      if (overlay) overlay.style.display = 'none';
+      sessionStorage.setItem(AUTH_SESSION_KEY, 'true');
+    }
+
+    function checkAuth() {
+      if (sessionStorage.getItem(AUTH_SESSION_KEY) === 'true') {
+        unlockResume();
+      }
+    }
+
+    function verifyPassword() {
+      const input = document.getElementById('auth-password');
+      const errorMsg = document.getElementById('auth-error');
+      
+      if (input.value === RESUME_PASSWORD) {
+        errorMsg.textContent = '';
+        unlockResume();
+      } else {
+        errorMsg.textContent = '비밀번호가 일치하지 않습니다. 다시 입력해 주세요.';
+        input.value = '';
+        input.focus();
+        
+        // 흔들림 애니메이션 효과
+        const card = document.querySelector('.auth-card');
+        if (card) {
+          card.style.transform = 'translateX(-8px)';
+          setTimeout(() => { card.style.transform = 'translateX(8px)'; }, 100);
+          setTimeout(() => { card.style.transform = 'translateX(-4px)'; }, 200);
+          setTimeout(() => { card.style.transform = 'translateX(4px)'; }, 300);
+          setTimeout(() => { card.style.transform = 'translateX(0)'; }, 400);
+        }
+      }
+    }
+
+    document.getElementById('auth-submit')?.addEventListener('click', verifyPassword);
+    document.getElementById('auth-password')?.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') {
+        verifyPassword();
+      }
+    });
+
+    // 페이지 로드 시 즉시 기존 인증 여부 검사
+    checkAuth();
+  </script>
 </body>
 </html>
