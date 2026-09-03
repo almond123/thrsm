@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
-  <title>주요 성과 정리</title>
+  <title>비공개 문서</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     
@@ -530,8 +530,7 @@
   <div id="auth-overlay">
     <div class="auth-card">
       <div class="auth-icon">🔒</div>
-      <h2>이력서 보호 중</h2>
-      <p>비공개 이력서입니다.<br>열람을 위해 비밀번호를 입력해 주세요.</p>
+      <h2 style="font-size: 1.15rem; font-weight: 600; color: var(--primary); margin-bottom: 22px;">열람을 위해 비밀번호를 입력해 주세요.</h2>
       <div class="auth-input-group">
         <input type="password" id="auth-password" class="auth-input" placeholder="비밀번호 입력" autofocus />
       </div>
@@ -1178,6 +1177,7 @@
 
     function unlockResume() {
       document.body.classList.add('authenticated');
+      document.title = '주요 성과 정리';
       const overlay = document.getElementById('auth-overlay');
       if (overlay) overlay.style.display = 'none';
       sessionStorage.setItem(AUTH_SESSION_KEY, 'true');
